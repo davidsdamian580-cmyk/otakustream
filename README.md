@@ -1,15 +1,15 @@
-# OtakuStream — Reference Match v2
+# OtakuStream Complete — Reference Layout + Features
 
-A responsive static anime discovery website designed to closely match the supplied mobile reference screenshot.
+This package combines the supplied reference layout with the site's functional features:
+- Neon dark/purple responsive homepage matching the supplied reference structure.
+- Hero carousel, genre strip, Trending Now, Top Rated, Anime Library, Recently Added, newsletter and footer.
+- Actual anime poster/banner artwork and metadata loaded at runtime from AniList's GraphQL API.
+- Official trailer player when AniList returns an embeddable YouTube trailer, with official-trailer fallback.
+- Region selector and legal viewing links using JustWatch plus service search links.
+- My List saved in browser localStorage.
+- Season/episode Watch Center with an authorized-embed player slot, first three episode slots marked FREE, and later episodes locked.
+- Search and genre filtering.
 
-Features:
-- Neon purple/dark layout with hero, genre strip and horizontal anime rows.
-- AniList GraphQL artwork/data at runtime.
-- Official trailer embedding when AniList returns a trailer ID.
-- Fallback official-trailer search.
-- Region selector and legal "Where to Watch" links through JustWatch.
-- My List using browser localStorage.
-- Search and genre filters.
-- GitHub Pages compatible static files.
+Important: Only add video IDs/URLs that you own or are licensed/authorized to embed. The site does not provide unauthorized copyrighted full episodes.
 
-Important: Only embed/stream videos you have permission to display. This project does not provide unauthorized full anime episodes.
+GitHub Pages: upload/replace the static files in your main branch. No build step is required.
