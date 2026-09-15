@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OtakuStream V2 — Anime Hub</title>
+<meta name="description" content="Discover anime, watch official trailers, build a watchlist and find licensed viewing options.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><a class="brand" href="#">OTAKU<span>STREAM</span></a><nav id="nav"><a href="#home">Home</a><a href="#browse">Browse</a><a href="#watchlist">My List</a><a href="#about">About</a></nav><button id="menu">☰</button></header>
+<main>
+<section id="home" class="hero"><div><small>THE ANIME HUB</small><h1>Watch. Discover.<br><b>Repeat.</b></h1><p>Find your next favourite anime, watch official previews and jump to licensed streaming platforms.</p><a class="cta" href="#browse">Start Exploring</a></div><div class="hero-art"><div class="orb">▶</div><span>OFFICIAL TRAILERS</span></div></section>
+
+<section id="browse" class="section"><div class="head"><div><small>EXPLORE</small><h2>Anime library</h2></div><input id="search" placeholder="Search titles..."></div><div class="filters"><button class="active" data-filter="All">All</button><button data-filter="Action">Action</button><button data-filter="Fantasy">Fantasy</button><button data-filter="Comedy">Comedy</button><button data-filter="Adventure">Adventure</button></div><div id="grid" class="grid"></div></section>
+
+<section id="watchlist" class="section dark"><small>YOUR COLLECTION</small><h2>My List</h2><div id="saved" class="grid"></div><p id="none">Nothing saved yet. Add anime from the library.</p></section>
+
+<section class="section how"><div><small>HOW IT WORKS</small><h2>A better way to find anime.</h2><p>Use OtakuStream as your anime discovery page. Each title can contain an official trailer and a link to a service that is licensed to stream it in your region.</p></div><div class="steps"><article><b>01</b><h3>Discover</h3><p>Browse genres and search titles.</p></article><article><b>02</b><h3>Preview</h3><p>Watch an official trailer.</p></article><article><b>03</b><h3>Watch</h3><p>Continue on a licensed service.</p></article></div></section>
+
+<section id="about" class="about"><h2>Build your anime community.</h2><p>Add reviews, rankings, news, quizzes, comments and legitimate monetization when your audience grows.</p></section>
+</main>
+<footer><b>OTAKUSTREAM</b><p>Anime discovery website. Do not upload or distribute copyrighted episodes without permission.</p><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></footer>
+<div id="modal" class="modal"><div class="modal-box"><button id="close">×</button><div id="modalContent"></div></div></div>
+<script src="script.js"></script>
+</body></html>
