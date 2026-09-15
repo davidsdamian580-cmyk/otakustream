@@ -1,44 +1,68 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>OtakuStream — Your Anime, Your Way</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OtakuStream — Anime Discovery</title>
 <meta name="description" content="Discover anime, watch official trailers and find legitimate streaming options by region.">
-<meta name="theme-color" content="#070817">
-<link rel="preconnect" href="https://graphql.anilist.co"><link rel="preconnect" href="https://www.youtube-nocookie.com">
+<meta name="theme-color" content="#080817">
+<link rel="preconnect" href="https://graphql.anilist.co">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="header">
-  <a class="logo" href="#home"><span class="logo-mark">✦</span><b>OTAKU<span>STREAM</span></b></a>
-  <nav id="nav"><a class="active" href="#home">⌂ <span>Home</span></a><a href="#browse">▣ <span>Anime</span></a><a href="#genres">⌄ <span>Genres</span></a><a href="#trending">♨ <span>Trending</span></a><a href="#watchlist">♡ <span>My List</span></a><a href="#about">ⓘ <span>About</span></a></nav>
-  <div class="header-right"><label class="header-search">⌕<input id="topSearch" placeholder="Search anime..." autocomplete="off"></label><button id="menuBtn" class="round-btn">☰</button></div>
+<header class="site-header">
+  <a class="brand" href="#home"><span class="brand-mark">✦</span> OTAKU<span>STREAM</span></a>
+  <nav id="nav" class="nav">
+    <a class="active" href="#home">⌂ Home</a><a href="#browse">▣ Anime</a><a href="#genres">⌄ Genres</a><a href="#trending">♨ Trending</a><a href="#watchlist">♡ My List</a><a href="#about">ⓘ About</a>
+  </nav>
+  <div class="header-tools"><label class="top-search"><span>⌕</span><input id="topSearch" placeholder="Search anime..." aria-label="Search anime"></label><button id="menu" class="menu" aria-label="Open menu">☰</button></div>
 </header>
 
-<main id="home">
-<section class="hero" id="hero">
-  <div class="hero-art" id="heroArt"></div><div class="hero-overlay"></div>
-  <div class="hero-content">
-    <span class="featured">FEATURED ANIME</span><h1 id="heroTitle">Demon Slayer</h1>
-    <div class="hero-meta"><b>★ <span id="heroScore">8.6</span>/10</b><span>Action</span><span>Fantasy</span><span>Adventure</span></div>
-    <p id="heroDesc">Discover a world of action, adventure and unforgettable characters.</p>
-    <div class="hero-buttons"><button class="btn primary" id="heroTrailer">▶ Watch Trailer</button><button class="btn outline" id="heroWatch">⌁ Where to Watch</button><button class="btn outline" id="heroList">♡ My List</button></div>
+<main>
+<section id="home" class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-copy">
+    <div class="eyebrow">FEATURED ANIME</div>
+    <h1 id="heroTitle">Demon Slayer</h1>
+    <div class="hero-meta"><span>★ 8.6/10</span><span>Action</span><span>Fantasy</span><span>Adventure</span></div>
+    <p id="heroDesc">Discover a visually striking action-fantasy journey, then watch an official trailer and find a legitimate service for your region.</p>
+    <div class="hero-actions"><button class="btn primary" onclick="openInfo(1)">▶ Watch Trailer</button><button class="btn ghost" onclick="openInfo(1)">⌁ Where to Watch</button><button class="btn ghost" onclick="toggle(1)">♡ My List</button></div>
   </div>
-  <div class="hero-carousel" id="heroCarousel"></div><div class="hero-arrows"><button id="prevHero">‹</button><button id="nextHero">›</button></div><div class="dots" id="heroDots"></div>
+  <div class="hero-side" id="heroSide"></div>
 </section>
 
-<section class="genre-strip" id="genres"><button class="genre active" data-filter="All">♨<span>Trending</span></button><button class="genre" data-filter="Action">⚔<span>Action</span></button><button class="genre" data-filter="Fantasy">✧<span>Fantasy</span></button><button class="genre" data-filter="Adventure">⚓<span>Adventure</span></button><button class="genre" data-filter="Comedy">☺<span>Comedy</span></button><button class="genre" data-filter="Drama">▣<span>Drama</span></button><button class="genre" data-filter="Horror">☾<span>Horror</span></button><button class="genre" data-filter="Sci-Fi">◉<span>Sci-Fi</span></button></section>
+<section id="genres" class="genre-strip"><button class="genre active" data-filter="All">♨<span>Trending</span></button><button class="genre" data-filter="Action">⚔<span>Action</span></button><button class="genre" data-filter="Fantasy">✧<span>Fantasy</span></button><button class="genre" data-filter="Adventure">⚓<span>Adventure</span></button><button class="genre" data-filter="Comedy">☺<span>Comedy</span></button><button class="genre" data-filter="Drama">▣<span>Drama</span></button><button class="genre" data-filter="Horror">☾<span>Horror</span></button><button class="genre" data-filter="Sci-Fi">◉<span>Sci-Fi</span></button></section>
 
-<section class="section" id="trending"><div class="section-title"><h2><i>♨</i> Trending Now</h2><a href="#browse">View All →</a></div><div class="row" id="trendingRow"></div></section>
-<section class="section"><div class="section-title"><h2><i>★</i> Top Rated Anime</h2><a href="#browse">View All →</a></div><div class="row" id="topRow"></div></section>
-<section class="section" id="browse"><div class="section-title browse-title"><div><h2>Anime Library</h2><p>Search the library and open any title for its official trailer and legal viewing options.</p></div><label class="library-search">⌕<input id="search" placeholder="Search anime..."></label></div><div class="library-grid" id="libraryGrid"></div></section>
-<section class="section"><div class="section-title"><h2><i>▣</i> Recently Added</h2><a href="#browse">View All →</a></div><div class="row" id="recentRow"></div></section>
-<section class="section" id="watchlist"><div class="section-title"><div><h2>♡ My List</h2><p>Saved on this device.</p></div></div><div class="library-grid" id="savedGrid"></div><div id="emptyList" class="empty">♡<h3>Your list is empty</h3><p>Add anime with the + button.</p></div></section>
-<section class="newsletter"><div><h2>Never Miss an Update</h2><p>Get anime recommendations, new releases and updates.</p></div><form id="newsletter"><input type="email" required placeholder="Enter your email address"><button class="btn primary">Subscribe</button></form></section>
-<section class="about" id="about"><div><span class="featured">WELCOME TO OTAKUSTREAM</span><h2>Your next anime obsession starts here.</h2><p>Browse real anime information, view official trailers and use region-aware links to find legitimate places to watch. OtakuStream does not host full copyrighted episodes.</p><a class="btn primary" href="#browse">Explore the Library →</a></div></section>
+<section id="trending" class="section">
+  <div class="section-head"><div><div class="eyebrow">HOT RIGHT NOW</div><h2>Trending Now</h2></div><a class="text-link" href="#browse">View All →</a></div>
+  <div id="trendingGrid" class="poster-grid"></div>
+</section>
+
+<section class="section compact-section">
+  <div class="section-head"><div><div class="eyebrow">HIGHLY RATED</div><h2>Top Rated Anime</h2></div><a class="text-link" href="#browse">View All →</a></div>
+  <div id="topGrid" class="poster-grid"></div>
+</section>
+
+<section id="browse" class="section browse">
+  <div class="section-head browse-head"><div><div class="eyebrow">EXPLORE</div><h2>Anime Library</h2><p>Search, filter and open any title to watch its trailer.</p></div><label class="search-box"><span>⌕</span><input id="search" placeholder="Search anime..." aria-label="Search anime"></label></div>
+  <div id="grid" class="card-grid"></div>
+</section>
+
+<section class="section compact-section">
+  <div class="section-head"><div><div class="eyebrow">JUST ADDED</div><h2>Recently Added</h2></div></div>
+  <div id="recentGrid" class="poster-grid"></div>
+</section>
+
+<section id="watchlist" class="section dark-section"><div class="section-head"><div><div class="eyebrow">YOUR COLLECTION</div><h2>My List</h2><p>Saved on this device.</p></div></div><div id="saved" class="card-grid"></div><div id="none" class="empty"><div>♡</div><h3>Your list is empty</h3><p>Tap “+ List” on an anime you want to remember.</p><a class="btn ghost" href="#browse">Browse Anime</a></div></section>
+
+<section class="newsletter"><div><h2>Never Miss an Update</h2><p>Get anime recommendations and new-title updates.</p></div><form onsubmit="event.preventDefault();this.querySelector('button').textContent='Subscribed ✓'"><input type="email" required placeholder="Enter your email address"><button class="btn primary">Subscribe</button></form></section>
+
+<section id="about" class="about"><div class="about-card"><div class="eyebrow">WELCOME TO OTAKUSTREAM</div><h2>Your next anime obsession starts here.</h2><p>OtakuStream is a discovery hub. Trailers are played from official YouTube-hosted videos when available, while streaming buttons send visitors to legitimate services or a region-aware availability search.</p><a class="btn primary" href="#browse">Explore the Library →</a></div></section>
 </main>
-<footer><div class="footer-main"><div><a class="logo" href="#home"><span class="logo-mark">✦</span><b>OTAKU<span>STREAM</span></b></a><p>Your Anime • Your Way • All in One Place</p></div><div class="footer-links"><a href="#home">Home</a><a href="#browse">Anime</a><a href="#genres">Genres</a><a href="#trending">Trending</a><a href="#watchlist">My List</a><a href="#about">About</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div><div class="footer-bottom">© 2026 OtakuStream <span>Discovery site — no copyrighted episodes hosted.</span></div></footer>
 
-<div class="modal" id="modal" aria-hidden="true"><div class="modal-card"><button class="modal-close" id="close">×</button><div id="modalContent"></div></div></div>
+<footer><div class="footer-top"><div><a class="brand" href="#home"><span class="brand-mark">✦</span> OTAKU<span>STREAM</span></a><p>Your Anime • Your Way • All in One Place</p></div><div class="footer-links"><a href="#home">Home</a><a href="#browse">Anime</a><a href="#genres">Genres</a><a href="#trending">Trending</a><a href="#watchlist">My List</a><a href="#about">About</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div><div class="footer-bottom"><span>© 2026 OtakuStream</span><span>Discovery website — no copyrighted episodes hosted.</span></div></footer>
+
+<div id="modal" class="modal" aria-hidden="true"><div class="modal-box"><button id="close" class="close" aria-label="Close">×</button><div id="modalContent"></div></div></div>
 <script src="script.js"></script>
-</body></html>
+</body>
+</html>
