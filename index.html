@@ -1,25 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>OtakuStream V2 — Anime Hub</title>
-<meta name="description" content="Discover anime, watch official trailers, build a watchlist and find licensed viewing options.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OtakuStream — Discover Your Next Anime</title>
+<meta name="description" content="Discover anime, explore genres, save favourites and find official trailers and licensed viewing options.">
+<meta name="theme-color" content="#080811">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header><a class="brand" href="#">OTAKU<span>STREAM</span></a><nav id="nav"><a href="#home">Home</a><a href="#browse">Browse</a><a href="#watchlist">My List</a><a href="#about">About</a></nav><button id="menu">☰</button></header>
+<header class="site-header">
+  <a class="brand" href="#home" aria-label="OtakuStream home">OTAKU<span>STREAM</span></a>
+  <nav id="nav" class="nav">
+    <a href="#home">Home</a><a href="#browse">Browse</a><a href="#trending">Trending</a><a href="#watchlist">My List</a><a href="#about">About</a>
+  </nav>
+  <button id="menu" class="menu" aria-label="Open menu" aria-expanded="false">☰</button>
+</header>
+
 <main>
-<section id="home" class="hero"><div><small>THE ANIME HUB</small><h1>Watch. Discover.<br><b>Repeat.</b></h1><p>Find your next favourite anime, watch official previews and jump to licensed streaming platforms.</p><a class="cta" href="#browse">Start Exploring</a></div><div class="hero-art"><div class="orb">▶</div><span>OFFICIAL TRAILERS</span></div></section>
+<section id="home" class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">THE ANIME HUB</div>
+    <h1>Watch.<br>Discover.<br><span>Repeat.</span></h1>
+    <p>Find your next favourite anime, explore genres, save your picks and jump to official previews and licensed viewing options.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#browse">Start Exploring <span>→</span></a>
+      <a class="btn ghost" href="#trending">See Trending</a>
+    </div>
+    <div class="trust-row"><span>✦ Curated titles</span><span>▶ Official previews</span><span>✓ Legal discovery</span></div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-glow"></div>
+    <div class="hero-poster">
+      <div class="poster-lines"></div><div class="hero-symbol">✦</div>
+      <div class="hero-poster-label">FEATURED</div>
+      <div class="hero-poster-title">ANIME<br><span>TONIGHT</span></div>
+      <div class="hero-poster-sub">Discover • Preview • Watch</div>
+    </div>
+    <div class="float-card top">🔥 <b>Trending</b><small>What fans are exploring</small></div>
+    <div class="float-card bottom">⭐ <b>Save favourites</b><small>Build your personal list</small></div>
+  </div>
+</section>
 
-<section id="browse" class="section"><div class="head"><div><small>EXPLORE</small><h2>Anime library</h2></div><input id="search" placeholder="Search titles..."></div><div class="filters"><button class="active" data-filter="All">All</button><button data-filter="Action">Action</button><button data-filter="Fantasy">Fantasy</button><button data-filter="Comedy">Comedy</button><button data-filter="Adventure">Adventure</button></div><div id="grid" class="grid"></div></section>
+<section class="stats">
+  <div><strong>8+</strong><span>Featured titles</span></div>
+  <div><strong>5</strong><span>Genres to explore</span></div>
+  <div><strong>100%</strong><span>Discovery focused</span></div>
+</section>
 
-<section id="watchlist" class="section dark"><small>YOUR COLLECTION</small><h2>My List</h2><div id="saved" class="grid"></div><p id="none">Nothing saved yet. Add anime from the library.</p></section>
+<section id="trending" class="section">
+  <div class="section-head">
+    <div><div class="eyebrow">HOT RIGHT NOW</div><h2>Trending anime</h2><p>Popular picks to put on your radar.</p></div>
+    <a class="text-link" href="#browse">View all →</a>
+  </div>
+  <div id="trendingGrid" class="poster-grid"></div>
+</section>
 
-<section class="section how"><div><small>HOW IT WORKS</small><h2>A better way to find anime.</h2><p>Use OtakuStream as your anime discovery page. Each title can contain an official trailer and a link to a service that is licensed to stream it in your region.</p></div><div class="steps"><article><b>01</b><h3>Discover</h3><p>Browse genres and search titles.</p></article><article><b>02</b><h3>Preview</h3><p>Watch an official trailer.</p></article><article><b>03</b><h3>Watch</h3><p>Continue on a licensed service.</p></article></div></section>
+<section id="browse" class="section browse">
+  <div class="section-head browse-head">
+    <div><div class="eyebrow">EXPLORE</div><h2>Anime library</h2><p>Search by title or filter by genre.</p></div>
+    <label class="search-box"><span>⌕</span><input id="search" placeholder="Search titles..." aria-label="Search anime"></label>
+  </div>
+  <div class="filters" role="group" aria-label="Genre filters">
+    <button class="active" data-filter="All">All</button><button data-filter="Action">Action</button><button data-filter="Fantasy">Fantasy</button><button data-filter="Comedy">Comedy</button><button data-filter="Adventure">Adventure</button>
+  </div>
+  <div id="grid" class="card-grid"></div>
+</section>
 
-<section id="about" class="about"><h2>Build your anime community.</h2><p>Add reviews, rankings, news, quizzes, comments and legitimate monetization when your audience grows.</p></section>
+<section id="watchlist" class="section dark-section">
+  <div class="section-head"><div><div class="eyebrow">YOUR COLLECTION</div><h2>My List</h2><p>Saved on this device.</p></div></div>
+  <div id="saved" class="card-grid"></div>
+  <div id="none" class="empty"><div>♡</div><h3>Your list is empty</h3><p>Tap “+ List” on an anime you want to remember.</p><a class="btn ghost" href="#browse">Browse anime</a></div>
+</section>
+
+<section class="section how">
+  <div class="how-copy"><div class="eyebrow">HOW IT WORKS</div><h2>A better way to find anime.</h2><p>OtakuStream is designed as a discovery hub. Each title can lead you to an official trailer and, where available, a licensed streaming option.</p></div>
+  <div class="steps">
+    <article><b>01</b><div class="step-icon">⌕</div><h3>Discover</h3><p>Browse genres and search titles.</p></article>
+    <article><b>02</b><div class="step-icon">▶</div><h3>Preview</h3><p>Find an official trailer before you watch.</p></article>
+    <article><b>03</b><div class="step-icon">✓</div><h3>Continue</h3><p>Use licensed services when available.</p></article>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="about-card">
+    <div class="eyebrow">WELCOME TO OTAKUSTREAM</div>
+    <h2>Your next anime obsession starts here.</h2>
+    <p>Explore favourites, discover new series and build a watchlist. More reviews, rankings, quizzes and community features can be added as the site grows.</p>
+    <a class="btn primary" href="#browse">Explore the library →</a>
+  </div>
+</section>
 </main>
-<footer><b>OTAKUSTREAM</b><p>Anime discovery website. Do not upload or distribute copyrighted episodes without permission.</p><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></footer>
-<div id="modal" class="modal"><div class="modal-box"><button id="close">×</button><div id="modalContent"></div></div></div>
+
+<footer>
+  <div class="footer-top"><div><a class="brand" href="#home">OTAKU<span>STREAM</span></a><p>Anime discovery, previews and recommendations.</p></div><div class="footer-links"><a href="#home">Home</a><a href="#browse">Browse</a><a href="#watchlist">My List</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div>
+  <div class="footer-bottom"><span>© 2026 OtakuStream</span><span>Discovery website — no copyrighted episodes hosted.</span></div>
+</footer>
+
+<div id="modal" class="modal" aria-hidden="true"><div class="modal-box"><button id="close" class="close" aria-label="Close">×</button><div id="modalContent"></div></div></div>
 <script src="script.js"></script>
-</body></html>
+</body>
+</html>

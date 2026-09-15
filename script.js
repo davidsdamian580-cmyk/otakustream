@@ -1,22 +1,26 @@
 const data=[
-{id:1,t:"Demon Slayer",g:["Action","Fantasy"],e:"⚔️",d:"Discover characters, reviews and official previews."},
-{id:2,t:"One Piece",g:["Adventure","Fantasy"],e:"🏴‍☠️",d:"Explore a legendary pirate adventure."},
-{id:3,t:"Solo Leveling",g:["Action","Fantasy"],e:"⚡",d:"A modern action-fantasy favourite."},
-{id:4,t:"Jujutsu Kaisen",g:["Action"],e:"👊",d:"Explore supernatural battles and characters."},
-{id:5,t:"Spy x Family",g:["Comedy","Action"],e:"🕵️",d:"A family comedy mixed with action."},
-{id:6,t:"Frieren",g:["Fantasy","Adventure"],e:"✨",d:"A thoughtful fantasy journey."},
-{id:7,t:"My Hero Academia",g:["Action"],e:"🦸",d:"Heroes, rivalries and superpowered adventures."},
-{id:8,t:"Attack on Titan",g:["Action","Adventure"],e:"🛡️",d:"Discover the story through reviews and previews."}
+{id:1,t:"Demon Slayer",g:["Action","Fantasy"],s:"8.6",e:"⚔️",d:"A visually striking action-fantasy journey filled with determined heroes and supernatural battles.",c1:"#4b287d",c2:"#151728",rank:"01"},
+{id:2,t:"One Piece",g:["Adventure","Fantasy"],s:"9.0",e:"☠️",d:"A legendary adventure following a crew chasing freedom, friendship and the greatest treasure.",c1:"#6b2f63",c2:"#161b31",rank:"02"},
+{id:3,t:"Solo Leveling",g:["Action","Fantasy"],s:"8.8",e:"⚡",d:"An action-heavy fantasy story about growth, danger and a mysterious power system.",c1:"#202f63",c2:"#171126",rank:"03"},
+{id:4,t:"Jujutsu Kaisen",g:["Action"],s:"8.7",e:"✦",d:"A supernatural action series featuring intense battles, curses and memorable characters.",c1:"#334b65",c2:"#171222",rank:"04"},
+{id:5,t:"Spy x Family",g:["Comedy","Action"],s:"8.5",e:"♢",d:"A secret-agent family comedy where every member is hiding something from the others.",c1:"#6b4260",c2:"#171a2a",rank:"05"},
+{id:6,t:"Frieren",g:["Fantasy","Adventure"],s:"9.1",e:"✧",d:"A reflective fantasy adventure about time, memories, friendship and the road ahead.",c1:"#315f75",c2:"#15162a",rank:"06"},
+{id:7,t:"My Hero Academia",g:["Action"],s:"8.3",e:"★",d:"A hero-school adventure about courage, rivalry, teamwork and growing into your abilities.",c1:"#3f5971",c2:"#18152b",rank:"07"},
+{id:8,t:"Attack on Titan",g:["Action","Adventure"],s:"9.0",e:"🛡️",d:"A dramatic survival story packed with mystery, difficult choices and large-scale conflict.",c1:"#4c3c39",c2:"#15151d",rank:"08"}
 ];
-let saved=JSON.parse(localStorage.getItem("savedAnime")||"[]"), filter="All";
-const grid=document.querySelector("#grid"), savedEl=document.querySelector("#saved"), none=document.querySelector("#none");
-function card(a){let s=saved.includes(a.id);return `<article class="card"><div class="poster">${a.e}</div><div class="body"><h3>${a.t}</h3><div class="meta">${a.g.join(" • ")}</div><p>${a.d}</p><div class="actions"><button class="mini primary" onclick="openInfo(${a.id})">▶ Preview</button><button class="mini" onclick="toggle(${a.id})">${s?"✓ Saved":"＋ List"}</button></div></div></article>`}
-function render(){let q=document.querySelector("#search").value.toLowerCase();let x=data.filter(a=>(filter==="All"||a.g.includes(filter))&&(a.t+" "+a.g.join(" ")).toLowerCase().includes(q));grid.innerHTML=x.map(card).join("")||"<p>No anime found.</p>";let y=data.filter(a=>saved.includes(a.id));savedEl.innerHTML=y.map(card).join("");none.style.display=y.length?"none":"block"}
+let saved=JSON.parse(localStorage.getItem("savedAnime")||"[]"),filter="All";
+const grid=document.querySelector("#grid"),savedEl=document.querySelector("#saved"),none=document.querySelector("#none");
+function poster(a,compact=false){return `<div class="${compact?"mini-poster":"poster"}" style="--c1:${a.c1};--c2:${a.c2}"><span class="symbol">${a.e}</span>${!compact?`<span class="rank">#${a.rank}</span><span class="score">★ ${a.s}</span>`:""}<div class="tag">FEATURED</div>${compact?`<h3>${a.t}</h3><div class="meta">${a.g.join(" • ")}</div>`:""}</div>`}
+function card(a){let s=saved.includes(a.id);return `<article class="card">${poster(a)}<div class="body"><h3>${a.t}</h3><div class="meta">${a.g.join(" • ")} · ★ ${a.s}</div><p>${a.d}</p><div class="actions"><button class="mini primary" onclick="openInfo(${a.id})">▶ Preview</button><button class="mini" onclick="toggle(${a.id})">${s?"✓ Saved":"＋ List"}</button></div></div></article>`}
+function render(){let q=document.querySelector("#search").value.toLowerCase();let x=data.filter(a=>(filter==="All"||a.g.includes(filter))&&(a.t+" "+a.g.join(" ")).toLowerCase().includes(q));grid.innerHTML=x.map(card).join("")||`<div class="empty" style="grid-column:1/-1"><div>⌕</div><h3>No anime found</h3><p>Try another title or genre.</p></div>`;let y=data.filter(a=>saved.includes(a.id));savedEl.innerHTML=y.map(card).join("");none.style.display=y.length?"none":"block"}
+function renderTrending(){document.querySelector("#trendingGrid").innerHTML=data.slice(0,4).map(a=>`<a class="mini-poster" style="--c1:${a.c1};--c2:${a.c2}" href="#browse" onclick="focusAnime(${a.id})"><span class="symbol">${a.e}</span><div class="tag">TRENDING</div><h3>${a.t}</h3><div class="meta">★ ${a.s} · ${a.g[0]}</div></a>`).join("")}
 function toggle(id){saved=saved.includes(id)?saved.filter(x=>x!==id):[...saved,id];localStorage.setItem("savedAnime",JSON.stringify(saved));render()}
-function openInfo(id){let a=data.find(x=>x.id===id);document.querySelector("#modalContent").innerHTML=`<small>ANIME PREVIEW</small><h2>${a.t}</h2><p>${a.d}</p><p><b>Genres:</b> ${a.g.join(", ")}</p><p>This button is ready for an official trailer embed/link. To stay legal, connect it to the anime publisher's official trailer or a licensed streaming provider rather than uploading episodes yourself.</p><a class="watch" href="https://www.youtube.com/results?search_query=${encodeURIComponent(a.t+" official trailer")}" target="_blank" rel="noopener">Find Official Trailer</a>`;document.querySelector("#modal").classList.add("show")}
-document.querySelector("#close").onclick=()=>document.querySelector("#modal").classList.remove("show");
+function focusAnime(id){const a=data.find(x=>x.id===id);document.querySelector("#search").value=a.t;filter="All";document.querySelectorAll(".filters button").forEach(x=>x.classList.toggle("active",x.dataset.filter==="All"));render()}
+function openInfo(id){let a=data.find(x=>x.id===id);document.querySelector("#modalContent").innerHTML=`<div class="eyebrow">ANIME PREVIEW</div><h2>${a.t}</h2><p><b>★ ${a.s}/10</b> · ${a.g.join(" · ")}</p><p>${a.d}</p><p>OtakuStream is a discovery site. Use the button below to find an official trailer. For full episodes, use a service that is licensed to show the title in your region.</p><a class="btn primary" href="https://www.youtube.com/results?search_query=${encodeURIComponent(a.t+" official trailer")}" target="_blank" rel="noopener">Find Official Trailer →</a>`;document.querySelector("#modal").classList.add("show");document.querySelector("#modal").setAttribute("aria-hidden","false")}
+document.querySelector("#close").onclick=()=>{document.querySelector("#modal").classList.remove("show");document.querySelector("#modal").setAttribute("aria-hidden","true")};
 document.querySelector("#modal").onclick=e=>{if(e.target.id==="modal")e.currentTarget.classList.remove("show")};
 document.querySelector("#search").oninput=render;
 document.querySelectorAll(".filters button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".filters button").forEach(x=>x.classList.remove("active"));b.classList.add("active");filter=b.dataset.filter;render()});
-document.querySelector("#menu").onclick=()=>{document.querySelector("#nav").style.display=document.querySelector("#nav").style.display==="flex"?"none":"flex"};
-render();
+document.querySelector("#menu").onclick=()=>{const n=document.querySelector("#nav"),m=document.querySelector("#menu");n.classList.toggle("open");m.setAttribute("aria-expanded",n.classList.contains("open"))};
+document.querySelectorAll("#nav a").forEach(a=>a.onclick=()=>document.querySelector("#nav").classList.remove("open"));
+renderTrending();render();

@@ -1,11 +1,34 @@
-# OtakuStream V2
-A Netflix-style anime discovery site.
+# OtakuStream Enhanced
 
-## Publish
-Upload these files to a GitHub repository and connect the repo to Cloudflare Pages. Keep `index.html` in the repository root.
+This version is a visual upgrade of the original OtakuStream V2.
 
-## Legal
-This site is intentionally built around discovery, official trailers and licensed viewing links. Do not upload, scrape, re-host or distribute copyrighted anime episodes without the necessary rights.
+## Included
+- Redesigned hero section
+- Trending anime row
+- Improved anime cards and poster artwork using CSS (no copyrighted episode files)
+- Ratings, genres and ranks
+- Search and genre filters
+- My List saved in browser localStorage
+- Better preview modal with official trailer search
+- Responsive mobile navigation
+- Improved footer and layout
+- Existing Privacy and Terms pages
 
-## Upgrade path
-For a production site, add a real CMS/database, secure server-side authentication, official trailer embeds, region-aware licensed streaming links, analytics, newsletter service, reviewed privacy/terms pages, and monetization accounts that you are eligible to use.
+## Publish on GitHub Pages
+Replace the website files in your repository with the files in this ZIP. Keep:
+- `index.html`
+- `style.css`
+- `script.js`
+- `privacy.html`
+- `terms.html`
+
+Your GitHub Pages settings can remain:
+- Branch: `main`
+- Folder: `/(root)`
+
+GitHub Pages should redeploy after the changes are committed.
+
+## Important
+This site is a discovery/preview website. It does not host or redistribute copyrighted anime episodes. Use official trailers and licensed streaming services.
+
+For future monetization, check the age and account requirements of each advertising, affiliate, payment, or domain provider. If a service requires an adult account holder, use a parent/guardian rather than bypassing its rules.
