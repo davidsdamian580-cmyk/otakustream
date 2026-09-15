@@ -1,34 +1,15 @@
-# OtakuStream Enhanced
+# OtakuStream — Reference Match v2
 
-This version is a visual upgrade of the original OtakuStream V2.
+A responsive static anime discovery website designed to closely match the supplied mobile reference screenshot.
 
-## Included
-- Redesigned hero section
-- Trending anime row
-- Improved anime cards and poster artwork using CSS (no copyrighted episode files)
-- Ratings, genres and ranks
-- Search and genre filters
-- My List saved in browser localStorage
-- Better preview modal with official trailer search
-- Responsive mobile navigation
-- Improved footer and layout
-- Existing Privacy and Terms pages
+Features:
+- Neon purple/dark layout with hero, genre strip and horizontal anime rows.
+- AniList GraphQL artwork/data at runtime.
+- Official trailer embedding when AniList returns a trailer ID.
+- Fallback official-trailer search.
+- Region selector and legal "Where to Watch" links through JustWatch.
+- My List using browser localStorage.
+- Search and genre filters.
+- GitHub Pages compatible static files.
 
-## Publish on GitHub Pages
-Replace the website files in your repository with the files in this ZIP. Keep:
-- `index.html`
-- `style.css`
-- `script.js`
-- `privacy.html`
-- `terms.html`
-
-Your GitHub Pages settings can remain:
-- Branch: `main`
-- Folder: `/(root)`
-
-GitHub Pages should redeploy after the changes are committed.
-
-## Important
-This site is a discovery/preview website. It does not host or redistribute copyrighted anime episodes. Use official trailers and licensed streaming services.
-
-For future monetization, check the age and account requirements of each advertising, affiliate, payment, or domain provider. If a service requires an adult account holder, use a parent/guardian rather than bypassing its rules.
+Important: Only embed/stream videos you have permission to display. This project does not provide unauthorized full anime episodes.
