@@ -1,34 +1,14 @@
-# OtakuStream Enhanced
+# OtakuStream — Visual Redesign
 
-This version is a visual upgrade of the original OtakuStream V2.
+This version closely follows the supplied OtakuStream reference design: dark navy/purple theme, large featured hero, horizontal anime rows, neon cards, mobile layout, trailer modal and region-aware legal viewing links.
 
-## Included
-- Redesigned hero section
-- Trending anime row
-- Improved anime cards and poster artwork using CSS (no copyrighted episode files)
-- Ratings, genres and ranks
-- Search and genre filters
-- My List saved in browser localStorage
-- Better preview modal with official trailer search
-- Responsive mobile navigation
-- Improved footer and layout
-- Existing Privacy and Terms pages
+## Data and media
+Anime posters and banner artwork are loaded from AniList at runtime. AniList provides a public GraphQL API for anime data. Official trailers are embedded only when AniList supplies a YouTube trailer ID; otherwise the site opens a YouTube search for the title's official trailer.
 
-## Publish on GitHub Pages
-Replace the website files in your repository with the files in this ZIP. Keep:
-- `index.html`
-- `style.css`
-- `script.js`
-- `privacy.html`
-- `terms.html`
+## Legal viewing
+The Where to Watch panel sends visitors to JustWatch's country-specific search plus searches on major legitimate services. Availability is controlled by each service and changes by region.
 
-Your GitHub Pages settings can remain:
-- Branch: `main`
-- Folder: `/(root)`
+The site does not host or provide full copyrighted anime episodes.
 
-GitHub Pages should redeploy after the changes are committed.
-
-## Important
-This site is a discovery/preview website. It does not host or redistribute copyrighted anime episodes. Use official trailers and licensed streaming services.
-
-For future monetization, check the age and account requirements of each advertising, affiliate, payment, or domain provider. If a service requires an adult account holder, use a parent/guardian rather than bypassing its rules.
+## GitHub Pages
+Upload/replace `index.html`, `style.css`, `script.js`, `README.md`, `privacy.html`, and `terms.html` in the root of the `main` branch. GitHub Pages will redeploy automatically.
